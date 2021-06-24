@@ -31,14 +31,14 @@
                     $_SESSION['userType']=$userDTO->getUserType();
                     //$this->view = 'mapList.php';
                     //$this->returnView();
-                   // if($useDTO->getUserType()=='4'){
-                   // $frontController = new FrontController('action=manager');
-                   // $frontController->run();
-                   // }
-                   // else{
+                    if($_SESSION['userType']=='4'){
+                    $frontController = new FrontController('action=manager');
+                    $frontController->run();
+                    }
+                    else{
                     $frontController = new FrontController('action=mapList');
                     $frontController->run();
-                   // }
+                    }
                 } else {                     
                     $this->data = 'wrong password';
                     $this->view = 'loginForm.php';
@@ -47,7 +47,14 @@
             }
             
         }
-
+        public function join(){
+      	    echo "<script> console.log('user controller join()'); </script>";
+            $m= new UserDTO($_POST['juid'],$_POST['jpwd'],$_POST['jtype']);
+            echo "<script> console.log('33'); </script>";
+            $this->dao->insertByUser($m);
+	    $frontController = new FrontController('action=manager');
+            $frontController->run();	
+        }
        
     }
 
