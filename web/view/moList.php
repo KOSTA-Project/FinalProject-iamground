@@ -1,27 +1,27 @@
-<?php    
-    echo "<script> console.log('molist.php'); </script>";    
-    $moLists = $this->responseData; 
-    
+<?php
+    echo "<script> console.log('molist.php'); </script>";
+    $moLists = $this->responseData;
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">    
+    <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="./source/iamground.css">
 </head>
 <body>
-<table>
+    <div class='listForm'>
+        <div class='list'>
         <? for($i = 0; $i < count($moLists); $i++) : ?>
-            <tr>
-                <td><? echo $moLists[$i]->getMoId() ?></td>                        
-                <td>
-                    <form method="POST" action="../am/index.php?action=monitoring">
-                        <input type="hidden" name="moId" value="<? echo $moLists[$i]->getMoId() ?>"/>
-                        <input type="submit" value ="Detail"/>
-                    </form>
-                </td>                        
-            </tr>
+            <form class="mo" method="POST" action="../am/index.php?action=monitoring">
+                <button class="btnMo">
+                <input type="hidden" name="moId" value="<? echo $moLists[$i]->getMoId() ?>"/>
+                <div><? echo $moLists[$i]->getMoId() ?></div>
+                </button>
+            </form>
             <? endfor; ?>
-</table>
+        </div>
+    </div>
 </body>
 </html>
