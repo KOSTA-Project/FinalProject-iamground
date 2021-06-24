@@ -38,12 +38,12 @@
             return $userDTO;
         }
 
-	public function insertByUser(){		
+	public function insertByUser($m){
 		$sql = "insert into user values(?,?,?)";
-		$stm = $this->conn->prepare ($sql);
-		$stm->bindValue (1, $this->getUserId ());
-		$stm->bindValue (2, $this->getUserPw ());
-		$stm->bindValue (3, $this->getUserType ());
+		$stm = $this->connection->prepare($sql);
+                echo "<script> console.log('11'); </script>";
+		$stm->bind_param('sss',$_POST['juid'],$_POST['jpwd'],$_POST['jtype']);
+                echo "<script> console.log('22'); </script>";
 		$stm->execute();
 	}
 
