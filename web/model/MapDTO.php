@@ -1,22 +1,23 @@
 <?php
-    echo "<script> console.log('mapdto load'); </script>";
-    class MapDTO{
-        private $mapId;
+    class MoDTO{
+        private $moId;
         private $userId;
-        private $mapLocation;
+        private $mapId;
+        private $moType;
 
-        public function __construct($mapId, $userId, $mapLocation){
-            $this->mapId = $mapId;
+        public function __construct($moId, $userId, $mapId, $moType){
+            $this->moId = $moId;
             $this->userId = $userId;
-            $this->mapLocation = $mapLocation;
-        }
-
-        public function setMapId($mapId){
             $this->mapId = $mapId;
+            $this->moType = $moType;
         }
 
-        public function getMapId(){
-            return $this->mapId;
+        public function setMoId($moId){
+            $this->moId = $moId;
+        }
+
+        public function getMoId(){
+            return $this->moId;
         }
 
         public function setUserId($userId){
@@ -27,13 +28,20 @@
             return $this->userId;
         }
 
-        public function setMapLocation($mapLocation){
-            $this->mapLocation = $mapLocation;
+        public function setMapId($mapId){
+            $this->mapId = $mapId;
         }
 
-        public function getMapLocation(){
-            return $this->mapLocation;
+        public function getMapId(){
+            return $this->mapId;
         }
 
+        public function setMoType($moType){
+            $this->moType = $moType;
+        }
+
+        public function getMoType(){
+            return $this->moType;
+        }
     }
 ?>
