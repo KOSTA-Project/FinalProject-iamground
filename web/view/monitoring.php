@@ -1,11 +1,11 @@
-<?php    
-    echo "<script> console.log('monitoring.php'); </script>";    
-    $dtoArr = $this->responseData;    
+<?php
+    echo "<script> console.log('monitoring.php'); </script>";
+    $dtoArr = $this->responseData;
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">    
+    <meta charset="UTF-8">
     <title>Document</title>
     <script src="./source/controlByWSAD.js"></script>
 </head>
@@ -19,7 +19,7 @@
             <td><? echo $dtoArr[1]->getMoType();?></td>
         <tr>
     </table>
-     
+
     <div>
         <img src="http://192.168.0.170:8090/?action=stream">
         <p>key w = forward<br>
