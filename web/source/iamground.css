@@ -76,6 +76,58 @@
     width: 100%;   
 }
 
+#navi{
+    width:1000px;
+    height : 1000px;
+    background-color: #274e13;
+}
+
+#blackbox{
+    width:1000px;
+    height : 1000px;
+    background-color: #38761d;
+}
+
+.directionBtns{
+    position: absolute;
+    width: 1000px;
+    height: 300px;
+}
+
+.directionBtns button{
+    position: absolute;
+    border-radius: 50%;
+    width: 115px;
+    height: 115px;
+    border-width: 8px;
+}
+
+.directionBtns .btnForward{    
+    top: 20%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+}
+
+.directionBtns .btnLeft{
+    
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+}
+
+.directionBtns .btnRight{    
+    top: 50%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+}
+
+.directionBtns .btnBackward{
+    
+    top: 80%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+}
+
 
 
 
