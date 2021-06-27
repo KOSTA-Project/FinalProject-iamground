@@ -12,7 +12,7 @@
                 <div class='container'>
                     <div>
                         <span><? echo '회원 생성'; ?></span>
-                        <form method="POST" action="./index.php?action=join"">
+                        <form method="POST" action="./index.php?action=join">
                           <tr>
                               <br><td>User ID :</td>
                               <td><input type="text" name="juid"/></td>
