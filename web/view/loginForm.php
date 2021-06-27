@@ -8,11 +8,11 @@
   <head>
     <meta charset="utf-8">
     <title>iamgorund</title>
-    <link rel="stylesheet" href="./source/iamground.css">
+    <link rel="stylesheet" href="./source/iamground.css">     
   </head>
   <body>
   <div class='container'>
-    <form method="post" action="./index.php?action=login">
+    <form method="post" action="./index.php?action=login"> 
       <table id="loginTable">
         <tr>
           <td>아이디 :</td>
@@ -23,8 +23,8 @@
           <td>비밀번호 : </td>
           <td><input type="password" name="pwd" /></td>
         </tr>
-      </table>
-      </form>
+      </table>      
+      </form>    
   </div>
   </body>
 </html>
