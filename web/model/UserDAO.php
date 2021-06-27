@@ -1,3 +1,4 @@
+
 <?php
     require_once 'UserDTO.php';
     require_once 'DBConnector.php';
@@ -48,17 +49,18 @@
 	}
 
 	public function updateByUser(){
-		$sql = "update user set user_pwd=?, user_type=? where user_id=?;";		
-		$stm = $this->conn->prepare ($sql);
-		$stm->bindValue (1, $m->getUserPw ());
-		$stm->bindValue (2, $m->getUserType ());
-		$stm->bindValue (2, $m->getUserId ());
+                echo "<script> console.log('update start'); </script>";
+		$sql = "update user set user_id=?, user_pwd=?, user_type=? where user_id=?";		
+		$stm = $this->connection->prepare ($sql);
+		$stm->bind_param('ssss',$_POST['Uuid'],$_POST['Upwd'],$_POST['Utype'],$_POST['Uuid']);
 		$stm->execute();									
 	}
 	public function deleteByUser($userId){
-		$sql = "delete from member where user_id=?;";
-		$stm = $this->conn->prepare ($sql);
-		$stm->bindValue (1, $userId);
+        echo $userId;
+                echo "<script> console.log('deleteByUser'); </script>";
+		$sql = "delete from user where user_id=?;";
+		$stm = $this->connection->prepare ($sql);
+		$stm->bind_param ('s',$userId);
 		$stm->execute();
 	}
 
