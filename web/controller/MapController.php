@@ -38,6 +38,7 @@
             $this->view = 'monitoring.php';
             $this->returnView($dtoArr);
         }
+
         /*
         public function cInsertMapImage($mapImage){
             echo "<script> console.log('cInsertMapImage() called'); </script>";
