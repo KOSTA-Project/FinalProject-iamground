@@ -7,6 +7,7 @@
     function sendKeyToMO(){
         $output = $_POST["direction"];
         $address = $_POST["address"];     // hard coding need to change
+        echo $address;
         $port = 9001;
         try{   
             //echo $output;            
@@ -22,7 +23,7 @@
                 echo "socket_connect() failed.\nReason: ($result) ". socket_strerror(socket_last_error($socket))."\n";
             }
             // delay 0.5 seconds
-            usleep(500000);   
+            usleep(5000);   
             // send message                 
             socket_write($socket, $output, strlen($output));    
             echo $output;    
