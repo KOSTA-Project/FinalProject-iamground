@@ -61,6 +61,26 @@
                     $this->controller = new UserController();
                     $this->controller->join();
                     break;
+                case "action=userinfo":
+                    echo "<script> console.log('action=userinfo'); </script>";
+                    $this->controller = new UserController();
+                    $this->controller->userinfo($_POST['infouid']);
+                    break;
+
+	            case "action=editform";
+                    echo "<script> console.log('action=editform load'); </script>";
+                    $this->controlView("editform.php");
+                    break;
+                case "action=edit":
+                    echo "<script> console.log('action=edit load'); </script>";
+                    $this->controller = new UserController();
+                    $this->controller->edit();
+                    break;
+                case "action=delete":
+                    echo "<script> console.log('action=delete'); </script>";
+                    $this->controller = new UserController();
+                    $this->controller->delete($_POST['Duid']);
+                    break;
                 /*
                 case "action=imageUpload":
                     $this->controller = new MapController();
