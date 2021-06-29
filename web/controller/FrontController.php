@@ -1,75 +1,64 @@
 <?php
-    echo "<script> console.log('frontcontroller load'); </script>";
+    //echo "<script> console.log('frontcontroller loaded'); </script>";
     require_once 'UserController.php';
     require_once 'MoController.php';
     require_once 'MapController.php';
     
     class FrontController{
-        private $controller;
-        private $action;
-        private $data;
-        private $view;
         private $query;
+        private $controller;
+        private $action;        
         public $responseData = array();
 
+        // frontcontroller constructer, it is called by 'new FrontController()'
         public function __construct($query=null){
-            
-            echo "<script> console.log('construct frontcontroller'); </script>";
+            //echo "<script> console.log('construct frontcontroller'); </script>";
             $this->query = $query;
-            echo "<script> console.log('".$this->query."'); </script>";
-            
-            //$this->action = $action; 
-                               
+            //echo "<script> console.log('".$this->query."'); </script>";            
         }
         
-        public function run(){
-            
+        public function run(){            
             switch($this->query){
                 case "action=loginForm":
                     $this->controlView("loginForm.php");
                     break;
                 case "action=login":
-                    //echo $this->query;
                     $this->controller = new UserController();
-                    $this->controller->login($_POST['uid'], $_POST['pwd']);
-                    //$this->login();
+                    $this->controller->login($_POST['userId'], $_POST['userPw']);
                     break;
                 case "action=moList":
-                    //echo $this->query;
-                    $this->controller = new MoController();
-                    $this->controller->cSelectMoByMapId($_POST['mId']);
+                    $this->controller = new MoController();                    
+                    $this->controller->cSelectMoByMapId($_POST['mapId']);
                     break;
                 case "action=mapList":
                     $this->controller = new MapController();
                     session_start();
-                    $this->controller->cSelectMapByUserId($_SESSION['userId']);
-                    //$this->controller->cSelectMapByUserId('yun');
+                    $this->controller->cSelectMapByUserId($_SESSION['userId']);                    
                     break;
-                case "action=monitoring":
+                case "action=monitoring":                    
                     $this->controller = new MapController();
                     $this->controller->cMonitoringByMoId($_POST['moId']);
                     break;
                 case "action=manager":
                     $this->controlView("manager.php");
                     break;
-                case "action=joinform";
+                case "action=joinForm";
                     echo "<script> console.log('action=joinform load'); </script>"; 
-                    $this->controlView("joinform.php");
+                    $this->controlView("joinForm.php");
                     break;
                 case "action=join":
                     echo "<script> console.log('action=join load'); </script>";
                     $this->controller = new UserController();
                     $this->controller->join();
                     break;
-                case "action=userinfo":
+                case "action=userInfo":
                     echo "<script> console.log('action=userinfo'); </script>";
                     $this->controller = new UserController();
-                    $this->controller->userinfo($_POST['infouid']);
+                    $this->controller->userInfo($_POST['userId']);
                     break;
-
-	            case "action=editform";
+                case "action=editForm":
                     echo "<script> console.log('action=editform load'); </script>";
-                    $this->controlView("editform.php");
+                    $this->controlView("editForm.php");
                     break;
                 case "action=edit":
                     echo "<script> console.log('action=edit load'); </script>";
@@ -79,7 +68,7 @@
                 case "action=delete":
                     echo "<script> console.log('action=delete'); </script>";
                     $this->controller = new UserController();
-                    $this->controller->delete($_POST['Duid']);
+                    $this->controller->delete($_POST['userId']);
                     break;
                 /*
                 case "action=imageUpload":
@@ -91,28 +80,12 @@
             }
             
         }
-        /*
-        public function login(){   
-            $code = $this->userService->login($_POST['uid'], $_POST['pwd']);                        
-            switch($code){
-                case 1:
-                    $this->data = 'no id';
-                    require './view/loginForm.php';                     
-                case 2:
-                    $this->data = 'wrong password';
-                    require './view/loginForm.php';                    
-                case 3:
-                    echo "<script> console.log('login ok'); </script>";
-                    $this->data = 'login ok';
-                    require './view/main.php';                 
-                                     
-            }
-        }
-        */
+       
         public function controlView($view, $responseData=null){
             echo "<script> console.log('controlView'); </script>";
             $this->responseData = $responseData;     
-            //var_dump($this->responseData);            
+            //var_dump($this->responseData);
+            //echo $view;            
             require './view/'.$view;
         }
 
