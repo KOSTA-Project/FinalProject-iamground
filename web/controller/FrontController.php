@@ -51,6 +51,11 @@
                     $this->controller = new UserController();
                     $this->controller->join();
                     break;
+                case "action=deleteUser":
+                    echo "<script> console.log(action=deleteUser'); </script>";
+                    $this->controller = new UserController();
+                    $this->controller->cDeleteUser($_POST['userId']);
+                    break;
                 case "action=userInfo":
                     echo "<script> console.log('action=userinfo'); </script>";
                     $this->controller = new UserController();
@@ -60,16 +65,42 @@
                     echo "<script> console.log('action=editform load'); </script>";
                     $this->controlView("editForm.php");
                     break;
-                case "action=edit":
-                    echo "<script> console.log('action=edit load'); </script>";
-                    $this->controller = new UserController();
-                    $this->controller->edit();
+                case "action=addMapForm":
+                    $this->controlView("addMapForm.php");
                     break;
-                case "action=delete":
-                    echo "<script> console.log('action=delete'); </script>";
-                    $this->controller = new UserController();
-                    $this->controller->delete($_POST['userId']);
+                case "action=addMap":
+                    $this->controller = new MapController();
+                    $this->controller->cAddMap($_POST['mapId'], $_POST['userId'], $_POST['mapLocation']);
                     break;
+                case "action=deleteMap":
+                    $this->controller = new MapController();
+                    $this->controller->cDeleteMap($_POST['mapId']);
+                    break;
+                case "action=addMoForm":
+                    $this->controlView("addMoForm.php");
+                    break;
+                case "action=addMo":
+                    $this->controller = new MoController();
+                    $this->controller->cAddMo($_POST['moId'], $_POST['userId'], $_POST['mapId'], $_POST['moType']);
+                    break;
+                case "action=deleteMo":
+                    $this->controller = new MoController();
+                    $this->controller->cDeleteMo($_POST['moId']);
+                    break;
+                case "action=updateUser":
+                    echo "<script> console.log('action=update user load'); </script>";
+                    $this->controller = new UserController();
+                    $this->controller->cUpdateUser($_POST['userId'], $_POST['userPw'], $_POST['userType']);
+                    break;
+                case "action=updateMap":
+                    $this->controller = new MapController();
+                    $this->controller->cUpdateMap($_POST['mapId'], $_POST['mapLocation']);
+                    break;
+                case "action=updateMo":
+                    echo "<script> console.log('action=update mo load'); </script>";
+                    $this->controller = new MoController();
+                    $this->controller->cUpdateMo($_POST['moId'], $_POST['moType']);
+                    break;               
                 /*
                 case "action=imageUpload":
                     $this->controller = new MapController();
@@ -82,7 +113,7 @@
         }
        
         public function controlView($view, $responseData=null){
-            echo "<script> console.log('controlView'); </script>";
+            //echo "<script> console.log('controlView'); </script>";
             $this->responseData = $responseData;     
             //var_dump($this->responseData);
             //echo $view;            
