@@ -1,5 +1,5 @@
 <?php
-    echo "<script> console.log('mapdao load'); </script>";
+    //echo "<script> console.log('mapdao load'); </script>";
     require_once 'MapDTO.php';
     require_once 'DBConnector.php';
 
@@ -11,7 +11,6 @@
         private function __construct(){
             $dbConnector = DBConnector::getInstance();
             $this->connection = $dbConnector->getConnection();
-
         }
 
         public static function getInstance(){
@@ -20,67 +19,77 @@
                 self::$instance = new self;
             }
             return self::$instance;
-
         }
 
-        public function mSelectMapByUseruId($userId){
-            $userDTOs = array();
+        public function mSelectMapByUserId($userId){
+            $mapDTOs = array();
             $sql = "SELECT * FROM map WHERE user_id=?";
             $stmt = $this->connection->prepare($sql);
-
+            //
             $stmt->bind_param('s', $userId);
             $stmt->execute();
-
+            //
             $stmt->bind_result($mid, $uid, $location);
-
-
+            //
             while($stmt->fetch()){
                 $userDTOs[] = new MapDTO($mid, $uid, $location);
             }
-
             return $userDTOs;
         }
-
-
-        public function insertByMap(){
-                $sql = "insert into map values(?,?)";
-                $stm = $this->conn->prepare ($sql);
-                $stm->bindValue (1, $this->getMapId ());
-                $stm->bindValue (2, $this->getMapLocation ());
-                $stm->execute();
-        }
-
-        public function updateByMap(){
-                $sql = "update map set map_id=?, map_location=? where user_id=?;";
-                $stm = $this->conn->prepare ($sql);
-                $stm->bindValue (1, $m->getMapId ());
-                $stm->bindValue (2, $m->getMapLocation ());
-                $stm->bindValue (3, $m->getUserId ());
-                $stm->execute();
-        }
-        public function deleteByMap($userId){
-                $sql = "delete from map where user_id=?;";
-                $stm = $this->conn->prepare ($sql);
-                $stm->bindValue (1, $userId);
-                $stm->execute();
-        }
-
-        public function mMonitoringByMoId($moId){
+        /*
+        public function mSelectMapMoByUserId($userId){
             $dtoArr = array();
-            $sql = "SELECT m.map_id, m.user_id, m.map_location, mo.mo_id, mo.mo_type FROM map AS m JOIN mobile_object AS mo ON m.map_Id = mo.map_Id WHERE mo.mo_id = ?";
+            $sql = "SELECT m.map_id , m.map_location, mo.mo_id, mo.mo_type 
+	    FROM map AS m JOIN mobile_object AS mo ON m.map_id = mo.map_id WHERE m.user_id = ?";
             $stmt = $this->connection->prepare($sql);
-
-            $stmt->bind_param('s', $moId);
+            $stmt->bind_param('s', $userId);
             $stmt->execute();
-
-            $stmt->bind_result($mid, $uid, $location, $moid, $motype);
-            if($stmt->fetch()){
-                $mapDTO = new MapDTO($mid, $uid, $location);
+            $stmt->bind_result($mid, $mlocation, $moid, $motype);
+            while($stmt->fetch()){
+                $mapDTO = new MapDTO($mid, null, $mlocation);
                 $moDTO = new MoDTO($moid, null, null, $motype);
                 array_push($dtoArr, $mapDTO);
                 array_push($dtoArr, $moDTO);
             }
             return $dtoArr;
+        }
+        */
+
+        public function insertMap($mapDTO){
+            $sql = "INSERT INTO map VALUES (?, ?, ?)";
+            $stm = $this->connection->prepare($sql);
+            $stm->bind_param('sss', $mapDTO->getMapId(), $mapDTO->getUserId() ,$mapDTO->getMapLocation());
+            $stm->execute();
+            
+        }
+        public function mUpdateMap($mapDTO){
+            $sql = "UPDATE map SET map_location=? WHERE map_id=?";		
+            $stm = $this->connection->prepare ($sql);
+            $stm->bind_param('ss', $mapDTO->getMapLocation(), $mapDTO->getMapId());
+            $stm->execute();
+        }
+        public function mDeleteMap($mapId){
+            $sql = "delete from map where map_id=?;";
+            $stm = $this->connection->prepare ($sql);
+            $stm->bind_param ('s',$mapId);
+            $stm->execute();
+        }
+            
+        public function mMonitoringByMoId($moId){
+            $dtoArr = array();            
+            $sql = "SELECT m.map_id, m.user_id, m.map_location, mo.mo_id, mo.mo_type FROM map AS m JOIN mobile_object AS mo ON m.map_Id = mo.map_Id WHERE mo.mo_id = ".$moId;
+            $stmt = $this->connection->prepare($sql);
+            //
+            //$stmt->bind_param('s', $moId);
+            $stmt->execute();
+            $stmt->bind_result($mid, $uid, $location, $moid, $motype);
+            if($stmt->fetch()){
+                $mapDTO = new MapDTO($mid, $uid, $location);
+                $moDTO = new MoDTO($moid, null, null, $motype);                
+                array_push($dtoArr, $mapDTO);
+                array_push($dtoArr, $moDTO);    
+            }
+        return $dtoArr;
         }
         /*
         public function mInsertMapImage($mapImage){
