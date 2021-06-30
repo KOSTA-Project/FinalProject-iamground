@@ -22,7 +22,7 @@
             if($result === false){
                 echo "socket_connect() failed.\nReason: ($result) ". socket_strerror(socket_last_error($socket))."\n";
             }
-            // delay 0.5 seconds
+            // delay 0.005 seconds
             usleep(5000);   
             // send message                 
             socket_write($socket, $output, strlen($output));    
