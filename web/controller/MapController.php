@@ -1,12 +1,12 @@
 <?php
-    echo "<script> console.log('mapcontroller load'); </script>";
+    //echo "<script> console.log('mapcontroller load'); </script>";
     require_once './model/MapDAO.php';
     class MapController{        
-        private $dao;
+        private $mapdao;
+        private $view;
 
         public function __construct(){
-           // echo "<script> console.log('mapcontroller construct'); </script>";
-            $this->dao = MapDAO::getInstance();
+            $this->mapdao = MapDAO::getInstance();
         }
 
         public function returnView($responseData=null){
@@ -15,26 +15,19 @@
         }
 
         public function cSelectMapByUserId($userId){
-            //echo "<script> console.log(' SelectMap_UserId()'); </script>";
-
-            $mapDTOs = $this->dao->mSelectMapByUseruId($userId);
+            $mapDTOs = $this->mapdao->mSelectMapByUserId($userId);
             
-            if($mapDTOs==null){
-                $this->data = 'no map';
-                $this->view = 'loginForm.php';      // check
+            if($mapDTOs==null){                     // map not exist
+                $this->view = 'notExistMap.php';      // check
                 $this->returnView();
-            } else {
-                $this->data = 'OK';
-                
+            } else {                                // map exist
                 $this->view = 'mapList.php';
                 $this->returnView($mapDTOs);
             }
-            
         }
 
-        public function cMonitoringByMoId($moId){
-            $dtoArr = $this->dao->mMonitoringByMoId($moId);
-            $this->data = 'OK';
+        public function cMonitoringByMoId($moId){            
+            $dtoArr = $this->mapdao->mMonitoringByMoId($moId);
             $this->view = 'monitoring.php';
             $this->returnView($dtoArr);
         }
@@ -51,6 +44,30 @@
             $this->dao->mInsertMapImage($file);
         }
         */
+
+        public function cAddMap($mapId, $userId, $mapLocation){
+            $mapDTO = new MapDTO($mapId, $userId, $mapLocation);
+            echo "<script> console.log('function cAddMap'); </script>";
+            $this->mapdao->insertMap($mapDTO);
+            $frontController = new FrontController('action=userInfo');
+            $frontController->run();	
+        }
+
+        public function cUpdateMap($mapId, $mapLocation){
+            $mapDTO = new MapDTO($mapId, null, $mapLocation);
+            echo "<script> console.log('function cUpdateMap'); </script>";
+            $this->mapdao->mUpdateMap($mapDTO);
+            $frontController = new FrontController('action=userInfo');
+            $frontController->run();	
+        } 
+
+        public function cDeleteMap($mapId){
+            echo "<script> console.log('function cDeleteMo'); </script>";
+            $moDTO = new MoDTO($userId , $mapId, $moId, $moType);
+            $this->mapdao->mDeleteMap($mapId);
+            $frontController = new FrontController('action=userInfo');
+            $frontController->run();
+        }
 
     }
 
