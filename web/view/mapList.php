@@ -12,43 +12,47 @@
     <title>mapList</title>
     <link rel="stylesheet" href="./source/iamground.css">
     <script src="./source/iamground.js"></script>
-	<?php
-    	if(session_status() != PHP_SESSION_ACTIVE){
-       	 session_start();
+        <?php
+        if(session_status() != PHP_SESSION_ACTIVE){
+         session_start();
         // header(Pragma: no-cache);
         // header(Cache-Control: no-cache,must-revalidate);
-   	    }
-  	    if(isset($_SESSION['userId'])){
-     	    if($this->action=='login'){
-       	        print "<script>alert('".$this->data."');</script>";
-      	    }
-     	    print $_SESSION['userId']." login ing...<br>";
-   	    } else {
-   	        header("Location:view/loginForm.php");
-   	    }
+            }
+            if(isset($_SESSION['userId'])){
+            if($this->action=='login'){
+                print "<script>alert('".$this->data."');</script>";
+            }
+            print $_SESSION['userId']." login ing...<br>";
+            } else {
+                header("Location:view/loginForm.php");
+            }
         $mapLists = $this->responseData;
         //var_dump($mapLists);
-	?>
-    
+        ?>
+
     </head>
     <body>
-        <div class='listForm'>            
+        <form method="POST" action="../am/index.php?action=logout">
+        <input type="submit" value="로그아웃"/>
+        </form>
+        <div class='listForm'>
+
             <div class='list'>
-            
+
             <? for($i = 0; $i < count($mapLists); $i++) : ?>
                 <button class='map' style="background-image: url('./source/image/<?=rand(1, 3)?>.jpg')" onclick="getMoList('<? echo $mapLists[$i]->getMapId() ?>', <? echo $i?>)">
                     <div class='location'><? echo $mapLists[$i]->getMapLocation(); ?></div>
-                    <div class='mapId'>map id : <? echo $mapLists[$i]->getMapId(); ?></div> 
+                    <div class='mapId'>map id : <? echo $mapLists[$i]->getMapId(); ?></div>
                 </button>
                 <div id="moList<?echo $i?>">
-                
+
                 </div>
-                                
+
             <? endfor; ?>
 
             </div>
         </div>
-        
+
 </body>
 </html>
  
