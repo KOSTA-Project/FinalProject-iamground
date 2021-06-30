@@ -1,14 +1,17 @@
 <?php
     //echo "<script> console.log('mocontroller load'); </script>";
-    require_once './model/MoDAO.php';    
+    require_once './model/MoDAO.php'; 
+    require_once './model/MapDAO.php';
+    require_once './model/UserDAO.php';    
 
     class MoController{
         private $modao;
+        private $mapdao;
         public $moList;
 
         public function __construct(){
             //echo "<script> console.log('mocontroller construct'); </script>";
-            $this->modao = MoDAO::getInstance();                                   
+            $this->modao = MoDAO::getInstance();                                  
         }
 
         public function returnView($responseData=null){
@@ -30,9 +33,51 @@
                 echo $moDTOs[$i]->getMoId();
                 //echo $moDTOs[$i]->getMoType();
             }
-                    
-        }       
-    }
+        } 
+        
+        public function cSelectMapMoByUserId($userId){
+            $this->mapdao = MapDAO ::getInstance();
+	    $dtoArr=array();
+	    $modtoArr=array();
+            $mapDTOs=array();
+	    $moDTOs=array();	 
+            $mapDTOs = $this ->mapdao->mSelectMapByUserId($userId);   // mapList
+	    array_push($dtoArr, $mapDTOs );
+
+            for($i=0; $i<count($mapDTOs); $i++){
+                $mapId = $mapDTOs[$i]->getMapId();    // mapList 안에 mapId
+                $moDTOs = $this->mapdao->mSelectMoByMapId($mapId);
+          	    array_push($modtoArr, $moDTOs );	
+             }
+	     array_push($dotArr, $modtoArr);
+	     return $dtoArr;
+        }
+
+        public function cAddMo($moId, $userId , $mapId, $moType){
+            $moDTO = new MoDTO($moId, $userId , $mapId, $moType);
+            echo "<script> console.log('function cAddMo'); </script>";
+            $this->modao->insertMo($moDTO);
+            $frontController = new FrontController('action=userInfo');
+            $frontController->run();
+        }	
+        
+        public function cDeleteMo($moId){
+            echo "<script> console.log('function cDeleteMo'); </script>";
+            $this->modao->mDeleteMo($moId);
+            $frontController = new FrontController('action=userInfo');
+            $frontController->run();
+        }
+
+        public function cUpdateMo($moId, $moType){                    
+            echo "<script> console.log('function cupdateMo()'); </script>";
+            $moDTO = new MoDTO($moId, null , null , $moType);
+            $this->modao->mUpdateMo($moDTO);
+            $frontController = new FrontController('action=userInfo');
+            $frontController->run();
+        }
+    } 
+             
+    
 
     
 ?>
