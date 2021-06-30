@@ -3,21 +3,21 @@
     require_once 'UserController.php';
     require_once 'MoController.php';
     require_once 'MapController.php';
-    
+
     class FrontController{
         private $query;
         private $controller;
-        private $action;        
+        private $action;
         public $responseData = array();
 
         // frontcontroller constructer, it is called by 'new FrontController()'
         public function __construct($query=null){
             //echo "<script> console.log('construct frontcontroller'); </script>";
             $this->query = $query;
-            //echo "<script> console.log('".$this->query."'); </script>";            
+            //echo "<script> console.log('".$this->query."'); </script>";
         }
-        
-        public function run(){            
+
+        public function run(){
             switch($this->query){
                 case "action=loginForm":
                     $this->controlView("loginForm.php");
@@ -26,16 +26,20 @@
                     $this->controller = new UserController();
                     $this->controller->login($_POST['userId'], $_POST['userPw']);
                     break;
+                case "action=logout":
+                    $this->controller = new UserController();
+                    $this->controller->logout();
+                    break;
                 case "action=moList":
-                    $this->controller = new MoController();                    
+                    $this->controller = new MoController();
                     $this->controller->cSelectMoByMapId($_POST['mapId']);
                     break;
                 case "action=mapList":
                     $this->controller = new MapController();
                     session_start();
-                    $this->controller->cSelectMapByUserId($_SESSION['userId']);                    
+                    $this->controller->cSelectMapByUserId($_SESSION['userId']);
                     break;
-                case "action=monitoring":                    
+                case "action=monitoring":
                     $this->controller = new MapController();
                     $this->controller->cMonitoringByMoId($_POST['moId']);
                     break;
@@ -43,7 +47,7 @@
                     $this->controlView("manager.php");
                     break;
                 case "action=joinForm";
-                    echo "<script> console.log('action=joinform load'); </script>"; 
+                    echo "<script> console.log('action=joinform load'); </script>";
                     $this->controlView("joinForm.php");
                     break;
                 case "action=join":
@@ -100,7 +104,7 @@
                     echo "<script> console.log('action=update mo load'); </script>";
                     $this->controller = new MoController();
                     $this->controller->cUpdateMo($_POST['moId'], $_POST['moType']);
-                    break;               
+                    break;
                 /*
                 case "action=imageUpload":
                     $this->controller = new MapController();
@@ -109,14 +113,14 @@
                     break;
                 */
             }
-            
+
         }
-       
+
         public function controlView($view, $responseData=null){
             //echo "<script> console.log('controlView'); </script>";
-            $this->responseData = $responseData;     
+            $this->responseData = $responseData;
             //var_dump($this->responseData);
-            //echo $view;            
+            //echo $view;
             require './view/'.$view;
         }
 
