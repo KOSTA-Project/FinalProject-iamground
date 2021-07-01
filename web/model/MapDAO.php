@@ -39,8 +39,8 @@
         /*
         public function mSelectMapMoByUserId($userId){
             $dtoArr = array();
-            $sql = "SELECT m.map_id , m.map_location, mo.mo_id, mo.mo_type 
-	    FROM map AS m JOIN mobile_object AS mo ON m.map_id = mo.map_id WHERE m.user_id = ?";
+            $sql = "SELECT m.map_id , m.map_location, mo.mo_id, mo.mo_type
+            FROM map AS m JOIN mobile_object AS mo ON m.map_id = mo.map_id WHERE m.user_id = ?";
             $stmt = $this->connection->prepare($sql);
             $stmt->bind_param('s', $userId);
             $stmt->execute();
@@ -60,10 +60,10 @@
             $stm = $this->connection->prepare($sql);
             $stm->bind_param('sss', $mapDTO->getMapId(), $mapDTO->getUserId() ,$mapDTO->getMapLocation());
             $stm->execute();
-            
+
         }
         public function mUpdateMap($mapDTO){
-            $sql = "UPDATE map SET map_location=? WHERE map_id=?";		
+            $sql = "UPDATE map SET map_location=? WHERE map_id=?";
             $stm = $this->connection->prepare ($sql);
             $stm->bind_param('ss', $mapDTO->getMapLocation(), $mapDTO->getMapId());
             $stm->execute();
@@ -74,9 +74,9 @@
             $stm->bind_param ('s',$mapId);
             $stm->execute();
         }
-            
+
         public function mMonitoringByMoId($moId){
-            $dtoArr = array();            
+            $dtoArr = array();
             $sql = "SELECT m.map_id, m.user_id, m.map_location, mo.mo_id, mo.mo_type FROM map AS m JOIN mobile_object AS mo ON m.map_Id = mo.map_Id WHERE mo.mo_id = ".$moId;
             $stmt = $this->connection->prepare($sql);
             //
@@ -85,9 +85,9 @@
             $stmt->bind_result($mid, $uid, $location, $moid, $motype);
             if($stmt->fetch()){
                 $mapDTO = new MapDTO($mid, $uid, $location);
-                $moDTO = new MoDTO($moid, null, null, $motype);                
+                $moDTO = new MoDTO($moid, null, null, $motype, null);
                 array_push($dtoArr, $mapDTO);
-                array_push($dtoArr, $moDTO);    
+                array_push($dtoArr, $moDTO);
             }
         return $dtoArr;
         }
