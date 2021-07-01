@@ -7,6 +7,9 @@
     text-align: center;
 }
 
+/*******************
+    iamground.php
+********************/
 .logoI{
     color : #274e13;
 }
@@ -19,23 +22,28 @@
     color : #6aa84f;
 }
 
+/*******************
+    loginForm.php
+********************/
+
 .btnLogin{
     padding-top: 30%;
     padding-bottom: 30%;
     background-color: #b6d7a8;        
 }
 
-#loginTable{
+.loginTable{
     width: 320px;
     text-align: right;
     margin: auto;
-
 }
+
 
 .listForm{
     position: absolute;
     left: 50%;
-    transform: translate(-50%, 0%);        
+    transform: translate(-50%, 0%); 
+    text-align: center;       
 }
 
 .list {
@@ -64,33 +72,42 @@
 
 .list .mo{
     margin-bottom: 5px;
-    height: 200px; 
+    /*height: 100px;*/ 
     display: inline-block;
-    width: 20%;
+    width: 10%;
+    text-align: center;
 }
 
-.list .btnMo{
+.list button{
     margin-bottom: 5px;
-    height: 200px; 
     display: inline-block;
-    width: 100%;   
+    height: 30px;
+    border-width: 0px;
+    background-color: white;
+}
+
+.list .btnMo{         
+    width: 30px;  
+    border-width: 3px;
+    margin-bottom: 0px;
 }
 
 #navi{
-    width:1000px;
-    height : 1000px;
+    width:900px;
+    height : 900px;
     background-color: #274e13;
 }
 
 #blackbox{
-    width:1000px;
-    height : 1000px;
+    width:300px;
+    height : 300px;
     background-color: #38761d;
 }
 
 .directionBtns{
     position: absolute;
-    width: 1000px;
+    top: 65%;
+    width: 900px;
     height: 300px;
 }
 
@@ -127,6 +144,87 @@
     left: 80%;
     transform: translate(-50%, -50%);
 }
+
+.manageTable{
+    width: 300px;
+    text-align: right;
+    margin: auto;
+}
+
+.manageTable input{
+    width: 100%;
+}
+
+
+.btnManage{
+    background-color: #b6d7a8;
+}
+
+.manageUser{
+    margin: auto;
+    margin-bottom: 50px;
+    /*width: 60%;*/ 
+    width: 600px;
+    text-align: left; 
+}
+
+.updateUser{
+    width: 85%;    
+}
+
+.manageUser form{
+    display: inline-block;
+}
+
+.manageUser div{
+    width: 83%;
+    display: inline-block;
+}
+
+.manageMapMo{
+    margin: auto;
+    margin-bottom: 30px;
+    border-bottom: 1px solid black;
+    /*width: 60%;*/ 
+    width: 600px;
+    text-align: left;   
+}
+
+
+.manageMapMo form{
+    display: inline-block;            
+}
+
+.manageMapMo form div{
+    display: inline-block;
+    width: 93%;
+}
+
+.manageMapMo .deleteForm{
+    width: 20px;
+}
+
+.manageMapMo .mapLocationId{
+    display: inline-block;
+    text-align: left;
+   
+}
+
+.mapLocationText{
+    height : 50px;
+    width: 300px;
+    font-size : 35px;
+}
+
+.manageMo{
+    border-top: 1px dotted black;
+    text-align: left;
+}
+.manageMo form{
+    display: inline-block;
+    width: 95%;        
+}
+
 
 
 
