@@ -22,16 +22,10 @@
         
         public function cSelectMoByMapId($mapId){
             //echo "<script> console.log('mo controller cSelectMoByMapId()'); </script>";
-            
             $moDTOs = $this->modao->mSelectMoByMapId($mapId);
-            
+            //
             for($i = 0; $i < count($moDTOs); $i++){
-                if($i != count($moDTOs)-1){
-                    echo $moDTOs[$i]->getMoId()."/";
-                    continue;
-                }
-                echo $moDTOs[$i]->getMoId();
-                //echo $moDTOs[$i]->getMoType();
+                echo "/".$moDTOs[$i]->getMoId()."|".$moDTOs[$i]->getMoStatus();               
             }
         } 
         
@@ -53,8 +47,8 @@
 	     return $dtoArr;
         }
 
-        public function cAddMo($moId, $userId , $mapId, $moType){
-            $moDTO = new MoDTO($moId, $userId , $mapId, $moType);
+        public function cAddMo($moId, $userId , $mapId, $moType, $moStatus){
+            $moDTO = new MoDTO($moId, $userId , $mapId, $moType ,$moStatus);
             echo "<script> console.log('function cAddMo'); </script>";
             $this->modao->insertMo($moDTO);
             $frontController = new FrontController('action=userInfo');
@@ -68,9 +62,9 @@
             $frontController->run();
         }
 
-        public function cUpdateMo($moId, $moType){                    
+        public function cUpdateMo($moId, $moType, $moStatus){                    
             echo "<script> console.log('function cupdateMo()'); </script>";
-            $moDTO = new MoDTO($moId, null , null , $moType);
+            $moDTO = new MoDTO($moId, null , null , $moType ,$moStatus);
             $this->modao->mUpdateMo($moDTO);
             $frontController = new FrontController('action=userInfo');
             $frontController->run();
