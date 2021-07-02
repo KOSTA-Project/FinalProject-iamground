@@ -6,12 +6,13 @@
         private $moType;
         private $moStatus;
 
-        public function __construct($moId, $userId, $mapId, $moType, $moStatus){
+        public function __construct($moId, $userId, $mapId, $moType, $moStatus, $moIp){
             $this->moId = $moId;
             $this->userId = $userId;
             $this->mapId = $mapId;
             $this->moType = $moType;
-                $this->moStatus = $moStatus;
+            $this->moStatus = $moStatus;
+            $this->moIp = $moIp;
         }
 
         public function setMoId($moId){
@@ -50,6 +51,12 @@
         }
         public function getMoStatus(){
             return $this->moStatus;
+        }
+        public function setMoIp(){
+            return $this->moIp;
+        }
+        public function getMoIp(){
+            return $this->moIp;
         }
 
     }
