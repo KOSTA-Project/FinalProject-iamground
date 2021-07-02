@@ -1,23 +1,24 @@
 <?php
-    //echo "<script> console.log('frontcontroller loaded'); </script>";
+   //실행에 필요한 파일을 불러온다.
     require_once 'UserController.php';
     require_once 'MoController.php';
     require_once 'MapController.php';
-    
+
+    //이용자가 요청한 쿼리를 분석하여 적합한 컨트롤러를 생성하고 메소드를 호출한다.
     class FrontController{
         private $query;
         private $controller;
-        private $action;        
+        private $action;
         public $responseData = array();
 
-        // frontcontroller constructer, it is called by 'new FrontController()'
+        // 프론트컨트롤러 생산자 , 다른 페이지에서 'new FrontController() ' 로 호출된다.
+        // index.php 파일에서 url 의 쿼리를 전달 받는다.
         public function __construct($query=null){
-            //echo "<script> console.log('construct frontcontroller'); </script>";
             $this->query = $query;
-            //echo "<script> console.log('".$this->query."'); </script>";            
         }
-        
-        public function run(){            
+
+        // 전달받은 쿼리와 데이터를 바탕으로 컨트롤러를 생성하고 메소드를 실행한다.
+        public function run(){
             switch($this->query){
                 case "action=loginForm":
                     $this->controlView("loginForm.php");
@@ -31,15 +32,15 @@
                     $this->controller->logout();
                     break;
                 case "action=moList":
-                    $this->controller = new MoController();                    
+                    $this->controller = new MoController();
                     $this->controller->cSelectMoByMapId($_POST['mapId']);
                     break;
                 case "action=mapList":
                     $this->controller = new MapController();
                     session_start();
-                    $this->controller->cSelectMapByUserId($_SESSION['userId']);                    
+                    $this->controller->cSelectMapByUserId($_SESSION['userId']);
                     break;
-                case "action=monitoring":                    
+                case "action=monitoring":
                     $this->controller = new MapController();
                     $this->controller->cMonitoringByMoId($_POST['moId']);
                     break;
@@ -47,26 +48,22 @@
                     $this->controlView("manager.php");
                     break;
                 case "action=joinForm";
-                    echo "<script> console.log('action=joinform load'); </script>"; 
+                    echo "<script> console.log('action=joinform load'); </script>";
                     $this->controlView("joinForm.php");
                     break;
                 case "action=join":
-                    echo "<script> console.log('action=join load'); </script>";
                     $this->controller = new UserController();
-                    $this->controller->join();
+                    $this->controller->join($_POST['userId'], $_POST['userPw'], $_POST['userType']);
                     break;
                 case "action=deleteUser":
-                    echo "<script> console.log(action=deleteUser'); </script>";
                     $this->controller = new UserController();
                     $this->controller->cDeleteUser($_POST['userId']);
                     break;
                 case "action=userInfo":
-                    echo "<script> console.log('action=userinfo'); </script>";
                     $this->controller = new UserController();
                     $this->controller->userInfo($_POST['userId']);
                     break;
                 case "action=editForm":
-                    echo "<script> console.log('action=editform load'); </script>";
                     $this->controlView("editForm.php");
                     break;
                 case "action=addMapForm":
@@ -85,14 +82,13 @@
                     break;
                 case "action=addMo":
                     $this->controller = new MoController();
-                    $this->controller->cAddMo($_POST['moId'], $_POST['userId'], $_POST['mapId'], $_POST['moType'], $_POST['moStatus']);
+                    $this->controller->cAddMo($_POST['moId'], $_POST['userId'], $_POST['mapId'], $_POST['moType'], $_POST['moStatus'] ,$_POST['moIp']);
                     break;
                 case "action=deleteMo":
                     $this->controller = new MoController();
                     $this->controller->cDeleteMo($_POST['moId']);
                     break;
                 case "action=updateUser":
-                    echo "<script> console.log('action=update user load'); </script>";
                     $this->controller = new UserController();
                     $this->controller->cUpdateUser($_POST['userId'], $_POST['userPw'], $_POST['userType']);
                     break;
@@ -101,17 +97,14 @@
                     $this->controller->cUpdateMap($_POST['mapId'], $_POST['mapLocation']);
                     break;
                 case "action=updateMo":
-                    echo "<script> console.log('action=update mo load'); </script>";
                     $this->controller = new MoController();
-                    $this->controller->cUpdateMo($_POST['moId'], $_POST['moType'], $_POST['moStatus']);
+                    $this->controller->cUpdateMo($_POST['moId'], $_POST['moType'], $_POST['moStatus'], $_POST['moIp']);
                     break;
                 case "action=userManage":
-                    echo "<script> console.log('action=usermanage'); </script>";
                     $this->controller = new UserController();
                     $this->controller->userManage();
                     break;
                 case "action=userManageForm":
-                    echo "<script> console.log('action=usermanageform load'); </script>";
                     $this->controlView("userManageForm.php");
                     break;
                 /*
@@ -122,14 +115,11 @@
                     break;
                 */
             }
-            
+
         }
-       
+        //각 컨트롤러에서 전달 받은 데이터를 바탕으로 view를 호출한다.
         public function controlView($view, $responseData=null){
-            //echo "<script> console.log('controlView'); </script>";
-            $this->responseData = $responseData;     
-            //var_dump($this->responseData);
-            //echo $view;            
+            $this->responseData = $responseData;
             require './view/'.$view;
         }
 
