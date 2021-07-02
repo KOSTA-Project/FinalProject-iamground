@@ -1,3 +1,4 @@
+<!--사용자를 추가합니다.-->
 <!DOCTYPE html>
 <html>
   <head>
@@ -28,8 +29,7 @@
                     <form method="POST" action="../am/index.php?action=manager">
                     <input type="submit" class="btnManage" value ="돌아가기"/>
                 </form>
-
-            </div>
+           </div>
          </div>
     </body>
 </html>
