@@ -1,31 +1,13 @@
 <?php
-    class MoDTO{
-        private $moId;
-        private $userId;
+    class MapDTO{
         private $mapId;
-        private $moType;
+        private $userId;
+        private $mapLocation;
 
-        public function __construct($moId, $userId, $mapId, $moType){
-            $this->moId = $moId;
-            $this->userId = $userId;
+        public function __construct($mapId, $userId, $mapLocation){
             $this->mapId = $mapId;
-            $this->moType = $moType;
-        }
-
-        public function setMoId($moId){
-            $this->moId = $moId;
-        }
-
-        public function getMoId(){
-            return $this->moId;
-        }
-
-        public function setUserId($userId){
             $this->userId = $userId;
-        }
-
-        public function getUserId(){
-            return $this->userId;
+            $this->mapLocation = $mapLocation;
         }
 
         public function setMapId($mapId){
@@ -36,12 +18,21 @@
             return $this->mapId;
         }
 
-        public function setMoType($moType){
-            $this->moType = $moType;
+        public function setUserId($userId){
+            $this->userId = $userId;
         }
 
-        public function getMoType(){
-            return $this->moType;
+        public function getUserId(){
+            return $this->userId;
         }
+
+        public function setMapLocation($mapLocation){
+            $this->mapLocation = $mapLocation;
+        }
+
+        public function getMapLocation(){
+            return $this->mapLocation;
+        }
+
     }
 ?>
