@@ -1,12 +1,58 @@
 .container{
-    position: absolute;    
+    position: absolute;
     top: 50%;
-    left: 50%; 
-    width: 90%;                 
+    left: 50%;
+    width: 90%;
     transform: translate(-50%, -50%);
     text-align: center;
 }
 
+.list{
+    top: 0%;
+    transform: translate(-50%, 0%);
+}
+
+.iamgroundTable{
+    margin: auto;
+    margin-bottom: 20px;
+    width: 330px;
+}
+
+.alineRight{
+    text-align: right;
+}
+
+.alineCenter{
+    text-align: center;
+}
+
+.alineLeft{
+    text-align: left;
+}
+
+.width200px{
+    width:200px;
+}
+
+.width300px{
+    width:300px;
+}
+
+.width600px{
+    width:600px;
+}
+
+.fontSize120px{
+    font-size: 120px;
+}
+
+.fontSize20px{
+    font-size: 20px;
+}
+
+.displayInlineBlock{
+    display: inline-block
+}
 /*******************
     iamground.php
 ********************/
@@ -29,65 +75,35 @@
 .btnLogin{
     padding-top: 30%;
     padding-bottom: 30%;
-    background-color: #b6d7a8;        
+    background-color: #b6d7a8;
 }
 
-.loginTable{
-    width: 320px;
-    text-align: right;
-    margin: auto;
-}
-
-
-.listForm{
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 0%); 
-    text-align: center;       
-}
-
-.list {
+.map{
     padding: 3px;
     width: 1000px;
-}
-
-.list .map{
     border-width: 8px;
     margin-bottom: 5px;
-    height: 300px; 
+    height: 300px;
     display: inline-block;
-    width: 100%;
-    
-}
-
-.location{
-    font-size: 120px;
     color: white;
 }
 
-.mapId{
-    font-size: 20px;
-    color: white;
-}
-
-.list .mo{
+.mo{
+    padding: 3px;
     margin-bottom: 5px;
-    /*height: 100px;*/ 
     display: inline-block;
     width: 10%;
     text-align: center;
 }
 
-.list button{
-    margin-bottom: 5px;
-    display: inline-block;
+.mo button{
     height: 30px;
     border-width: 0px;
     background-color: white;
 }
 
-.list .btnMo{         
-    width: 30px;  
+.mo .btnMo{
+    width: 30px;
     border-width: 3px;
     margin-bottom: 0px;
 }
@@ -119,125 +135,37 @@
     border-width: 8px;
 }
 
-.directionBtns .btnForward{    
+.directionBtns .btnForward{
     top: 20%;
     left: 80%;
     transform: translate(-50%, -50%);
 }
 
 .directionBtns .btnLeft{
-    
+
     top: 50%;
     left: 70%;
     transform: translate(-50%, -50%);
 }
 
-.directionBtns .btnRight{    
+.directionBtns .btnRight{
     top: 50%;
     left: 90%;
     transform: translate(-50%, -50%);
 }
 
 .directionBtns .btnBackward{
-    
+
     top: 80%;
     left: 80%;
     transform: translate(-50%, -50%);
 }
 
-.manageTable{
-    width: 300px;
-    text-align: right;
-    margin: auto;
-}
-
-.manageTable input{
-    width: 100%;
-}
-
-
 .btnManage{
     background-color: #b6d7a8;
-}
-
-.manageUser{
-    margin: auto;
-    margin-bottom: 50px;
-    /*width: 60%;*/ 
-    width: 600px;
-    text-align: left; 
-}
-
-.updateUser{
-    width: 85%;    
-}
-
-.manageUser form{
-    display: inline-block;
-}
-
-.manageUser div{
-    width: 83%;
-    display: inline-block;
-}
-
-.manageMapMo{
-    margin: auto;
-    margin-bottom: 30px;
-    border-bottom: 1px solid black;
-    /*width: 60%;*/ 
-    width: 600px;
-    text-align: left;   
-}
-
-
-.manageMapMo form{
-    display: inline-block;            
-}
-
-.manageMapMo form div{
-    display: inline-block;
-    width: 93%;
-}
-
-.manageMapMo .deleteForm{
-    width: 20px;
-}
-
-.manageMapMo .mapLocationId{
-    display: inline-block;
-    text-align: left;
-   
 }
 
 .mapLocationText{
     height : 50px;
     width: 300px;
     font-size : 35px;
-}
-
-.manageMo{
-    border-top: 1px dotted black;
-    text-align: left;
-}
-.manageMo form{
-    display: inline-block;
-    width: 95%;        
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
