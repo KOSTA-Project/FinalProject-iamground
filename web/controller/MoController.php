@@ -1,35 +1,72 @@
 <?php
-    //direction 정보가 있으면 sendKeyToMO()를 호출한다.
-    if(isset($_POST["direction"])){
-        sendKeyToMO();
-    }
+    require_once './model/MoDAO.php';
+    require_once './model/MapDAO.php';
+    require_once './model/UserDAO.php';
 
-    //controlByWSAD.js에서 전달받은 키워드를 소켓을 통해 전달한다.
-    function sendKeyToMO(){
-        $output = $_POST["direction"];
-        $address = $_POST["address"];
-        echo $address;
-        $port = 9001;
-        try{
-	    //tcp소켓을 생성한다.
-            $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-            if($socket === false){
-                echo "socket_create() failed: reason: ".socket_strerror(socket_last_error())."\n";
-            }
-            // 오브젝트 서버에 접속을 시도한다.
-            $result = socket_connect($socket, $address, $port);
+    class MoController{
+        private $modao;
+        private $mapdao;
+        public $moList;
 
-            if($result === false){
-                echo "socket_connect() failed.\nReason: ($result) ". socket_strerror(socket_last_error($socket))."\n";
+        public function __construct(){
+            $this->modao = MoDAO::getInstance();
+        }
+
+        public function returnView($responseData=null){
+            $frontController = new FrontController();
+            $frontController->controlView($this->view, $responseData);
+        }
+
+	//맵 아이디로 오브젝트 정보 조회
+        public function cSelectMoByMapId($mapId){
+            $moDTOs = $this->modao->mSelectMoByMapId($mapId);
+	    //조회한 오브젝트 아이디와 상태를 문자열로 전달한다.
+            for($i = 0; $i < count($moDTOs); $i++){
+                echo "/".$moDTOs[$i]->getMoId()."|".$moDTOs[$i]->getMoStatus();
             }
-            // delay 0.005 seconds
-            usleep(5000);
-            // 메세지 전송한다.
-            socket_write($socket, $output, strlen($output));
-            echo $output;
-        }finally{
-	    //소켓을 닫는다.
-            socket_close($socket);
+        }
+
+	//유저아이디로 맵과 오브젝트 정보를 조회한다.
+        public function cSelectMapMoByUserId($userId){
+            $this->mapdao = MapDAO ::getInstance();
+	    $dtoArr=array();
+	    $modtoArr=array();
+            $mapDTOs=array();
+	    $moDTOs=array();
+            $mapDTOs = $this ->mapdao->mSelectMapByUserId($userId);   // mapList
+	    array_push($dtoArr, $mapDTOs );
+
+	    //유저아이디로 조회한 맵정보와 맵정보의 아이디를 통해 가져온 오브젝트 정보를 dtoArr에 저장한다.
+            for($i=0; $i<count($mapDTOs); $i++){
+                $mapId = $mapDTOs[$i]->getMapId();    // mapList 안에 mapId
+                $moDTOs = $this->mapdao->mSelectMoByMapId($mapId);
+          	array_push($modtoArr, $moDTOs );
+             }
+	     array_push($dotArr, $modtoArr);
+	     return $dtoArr;
+        }
+
+	//오브젝트정보를 추가한다.
+        public function cAddMo($moId, $userId , $mapId, $moType, $moStatus, $moIp){
+            $moDTO = new MoDTO($moId, $userId , $mapId, $moType ,$moStatus, $moIp);
+            $this->modao->insertMo($moDTO);
+            $frontController = new FrontController('action=userInfo');
+            $frontController->run();
+        }
+
+	//오브젝트정보를 삭제한다.
+        public function cDeleteMo($moId){
+            $this->modao->mDeleteMo($moId);
+            $frontController = new FrontController('action=userInfo');
+            $frontController->run();
+        }
+
+	//오브젝트정보를 수정한다.
+        public function cUpdateMo($moId, $moType, $moStatus ,$moIp){
+            $moDTO = new MoDTO($moId, null , null , $moType ,$moStatus ,$moIp);
+            $this->modao->mUpdateMo($moDTO);
+            $frontController = new FrontController('action=userInfo');
+            $frontController->run();
         }
     }
-?>
+ ?>
