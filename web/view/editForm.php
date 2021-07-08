@@ -14,17 +14,26 @@
         <div class='container list'>
             <h3>회원 관리</h3>
             <h4>사용자 정보</h4>
-            <table class="iamgroundTable width600px alineLeft">
+            <table class="iamgroundTable width600px">
+                <tr>
+                    <td>
+                        <form class="alineRight" method="POST" action="../am/index.php?action=manager">
+                            <input type="submit" class="btnManage" value ="돌아가기"/>
+                        </form>
+                    </td>
+                </tr>   
+            </table>
+            <table class="iamgroundTable width600px alineLeft solidBottomBorder">
                 <form method="POST" class="displayInlineBlock" action="../am/index.php?action=updateUser">
                     <input type="hidden" name="userId" value="<?php echo $dtoArr[0]->getUserId();?>"/>
                     <tr>
-                        <td>아이디:</td><td><?php echo $dtoArr[0]->getUserId();?></td>
+                        <td class="width200px">아이디:</td><td><?php echo $dtoArr[0]->getUserId();?></td>
                     </tr>
                     <tr>
-                        <td>비밀번호:</td><td><input type="text" name="userPw" value="<?php echo $dtoArr[0]->getUserPw();?>"></td>
+                        <td class="width200px">비밀번호:</td><td><input type="text" name="userPw" value="<?php echo $dtoArr[0]->getUserPw();?>"></td>
                     </tr>
                     <tr>
-                        <td>권한:</td><td><input type="text" name="userType"  value="<?php echo $dtoArr[0]->getUserType();?>"></td>
+                        <td class="width200px">권한:</td><td><input type="text" name="userType"  value="<?php echo $dtoArr[0]->getUserType();?>"></td>
                     </tr>
                     <tr>
                         <td class="alineRight" colspan="2">
@@ -40,7 +49,7 @@
 
 
                 <? for($i = 0; $i < count($dtoArr[1]); $i++) : ?>
-                    <table class="iamgroundTable width600px alineLeft">
+                    <table class="iamgroundTable width600px alineLeft dottedBottomBorder">
                         <tr>
                             <td>
                                 <form class="displayInlineBlock" method="POST" action="../am/index.php?action=updateMap">
@@ -60,7 +69,7 @@
                             <td>번호 : <?php echo $dtoArr[1][$i]->getMapId();?></td>
                         </tr>
                         <tr>
-                            <td colspan="2">
+                            <td class="alineRight" colspan="2">
                                 <form class="displayInlineBlock" method="POST" action="../am/index.php?action=addMoForm">
                                     <input type="hidden" name="userId" value="<?php echo $dtoArr[0]->getUserId();?>"/>
                                     <input type="hidden" name="mapId" value="<?php echo $dtoArr[1][$i]->getMapId();?>"/>
@@ -68,26 +77,27 @@
                                 </form>
                             </td>
                         </tr>
-                    </table>
-                    <table class="iamgroundTable width600px alineLeft">
+                    </table>    
+                    <table class="iamgroundTable width600px alineLeft dottedBottomBorder">
                         <? for($j = 0; $j < count($dtoArr[2][$i]); $j++) : ?>
                             <tr>
-                                                <td><h3><?php echo $j+1 ,"번 "?>오브젝트 정보</h3></td>
+				                <td><h3><?php echo $j+1 ,"번 "?>오브젝트 정보</h3></td>
                             </tr>
                             <tr>
-                                <td>번호 : <?php echo $dtoArr[2][$i][$j]->getMoId();?></td>
+                                <td class="width200px">번호 :</td>
+                                <td><?php echo $dtoArr[2][$i][$j]->getMoId();?></td>
                             </tr>
                             <tr>
                                 <form class="displayInlineBlock" method="POST" action="../am/index.php?action=updateMo">
                                     <input type="hidden" name="userId"  value="<?php echo $dtoArr[0]->getUserId();?>">
                                     <input type="hidden" name="moId" value="<?php echo $dtoArr[2][$i][$j]->getMoId();?>"/>
-                                    <td>유형 : </td><td><input type="text" name="moType"  value="<?php echo $dtoArr[2][$i][$j]->getMoType();?>"></td>
+                                    <td class="width200px">유형 : </td><td><input type="text" name="moType"  value="<?php echo $dtoArr[2][$i][$j]->getMoType();?>"></td>
                             </tr>
                             <tr>
-                                       <td>상태 : </td><td><input type="text" name="moStatus"  value="<?php echo $dtoArr[2][$i][$j]->getMoStatus();?>"></td>
+                           		    <td class="width200px">상태 : </td><td><input type="text" name="moStatus"  value="<?php echo $dtoArr[2][$i][$j]->getMoStatus();?>"></td>
                             </tr>
                             <tr>
-                                            <td>IP : </td><td><input type="text" name="moIp"  value="<?php echo $dtoArr[2][$i][$j]->getMoIp();?>"></td>
+                                    <td class="width200px">IP : </td><td><input type="text" name="moIp"  value="<?php echo $dtoArr[2][$i][$j]->getMoIp();?>"></td>
                             </tr>
 
                             <tr>
@@ -115,9 +125,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <form method="POST" action="../am/index.php?action=manager">
-                                <input type="submit" class="btnManage width200px" value ="돌아가기"/>
-                            </form>
+                            
                         </td>
                     </tr>
                 </table>
