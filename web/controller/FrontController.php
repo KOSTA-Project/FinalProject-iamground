@@ -11,13 +11,13 @@
         private $action;
         public $responseData = array();
 
-        // 프론트컨트롤러 생산자 , 다른 페이지에서 'new FrontController() ' 로 호출된다.
-        // index.php 파일에서 url 의 쿼리를 전달 받는다.
+	// 프론트컨트롤러 생산자 , 다른 페이지에서 'new FrontController() ' 로 호출된다.
+	// index.php 파일에서 url 의 쿼리를 전달 받는다.
         public function __construct($query=null){
             $this->query = $query;
         }
 
-        // 전달받은 쿼리와 데이터를 바탕으로 컨트롤러를 생성하고 메소드를 실행한다.
+	// 전달받은 쿼리와 데이터를 바탕으로 컨트롤러를 생성하고 메소드를 실행한다.
         public function run(){
             switch($this->query){
                 case "action=loginForm":
@@ -117,7 +117,7 @@
             }
 
         }
-        //각 컨트롤러에서 전달 받은 데이터를 바탕으로 view를 호출한다.
+	//각 컨트롤러에서 전달 받은 데이터를 바탕으로 view를 호출한다.
         public function controlView($view, $responseData=null){
             $this->responseData = $responseData;
             require './view/'.$view;
