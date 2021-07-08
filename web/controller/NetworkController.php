@@ -11,7 +11,7 @@
         echo $address;
         $port = 9001;
         try{
-            //tcp소켓을 생성한다.
+	    //tcp소켓을 생성한다.
             $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
             if($socket === false){
                 echo "socket_create() failed: reason: ".socket_strerror(socket_last_error())."\n";
@@ -28,7 +28,7 @@
             socket_write($socket, $output, strlen($output));
             echo $output;
         }finally{
-            //소켓을 닫는다.
+	    //소켓을 닫는다.
             socket_close($socket);
         }
     }
