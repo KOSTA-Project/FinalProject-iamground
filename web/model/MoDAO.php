@@ -20,7 +20,7 @@
 
         }
 
-        //맵 아이디로 오브젝트정보를 가져온다.
+	//맵 아이디로 오브젝트정보를 가져온다.
         public function mSelectMoByMapId($mapId){
             $moDTOs = array();
             $sql = "SELECT * FROM mobile_object WHERE map_id=?";
@@ -34,7 +34,7 @@
             return $moDTOs;
         }
 
-        //유저아이디로 오브젝트정보를 가져온다.
+	//유저아이디로 오브젝트정보를 가져온다.
         public function mSelectMoByUserId($userId){
             $moDTOs = array();
             $sql = "SELECT * FROM mobile_object WHERE user_id=?";
@@ -48,7 +48,7 @@
             return $moDTOs;
         }
 
-        //오브젝트 정보를 추가한다.
+	//오브젝트 정보를 추가한다.
         public function insertMo($moDTO){
             $sql = "INSERT INTO mobile_object VALUES (?, ?, ? ,? ,?,?)";
             $stm = $this->connection->prepare($sql);
@@ -56,7 +56,7 @@
             $stm->execute();
         }
 
-        //오브젝트 정보를 수정한다.
+	//오브젝트 정보를 수정한다.
         public function mUpdateMo($moDTO){
             $sql = "UPDATE mobile_object SET mo_type=? ,mo_status=? ,mo_ip=? WHERE mo_id=?";
             $stm = $this->connection->prepare ($sql);
@@ -64,7 +64,7 @@
             $stm->execute();
         }
 
-        //오브젝트 정보를 삭제한다.
+	//오브젝트 정보를 삭제한다.
         public function mDeleteMo($moId){
             $sql = "delete from mobile_object where mo_id=?;";
             $stm = $this->connection->prepare ($sql);
