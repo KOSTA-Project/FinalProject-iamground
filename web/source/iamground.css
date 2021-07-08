@@ -1,21 +1,21 @@
 .container{
-    position: absolute;
+    position: absolute;    
     top: 50%;
-    left: 50%;
-    width: 90%;
+    left: 50%; 
+    width: 90%;                 
     transform: translate(-50%, -50%);
     text-align: center;
 }
 
 .list{
     top: 0%;
-    transform: translate(-50%, 0%);
+    transform: translate(-50%, 0%); 
 }
 
 .iamgroundTable{
     margin: auto;
     margin-bottom: 20px;
-    width: 330px;
+    width: 330px;        
 }
 
 .alineRight{
@@ -53,19 +53,30 @@
 .displayInlineBlock{
     display: inline-block
 }
+
+.solidBottomBorder{
+    border-bottom: #38761d solid;
+}
+
+.dottedBottomBorder{
+    border-bottom: #6aa84f dotted;
+}
 /*******************
     iamground.php
 ********************/
 .logoI{
     color : #274e13;
+    font-size: 70px;
 }
 
 .logoAM{
     color : #38761d;
+    font-size: 70px;
 }
 
 .logoGround{
     color : #6aa84f;
+    font-size: 70px;
 }
 
 /*******************
@@ -75,7 +86,7 @@
 .btnLogin{
     padding-top: 30%;
     padding-bottom: 30%;
-    background-color: #b6d7a8;
+    background-color: #b6d7a8;        
 }
 
 .map{
@@ -83,7 +94,7 @@
     width: 1000px;
     border-width: 8px;
     margin-bottom: 5px;
-    height: 300px;
+    height: 300px; 
     display: inline-block;
     color: white;
 }
@@ -96,14 +107,14 @@
     text-align: center;
 }
 
-.mo button{
+.mo button{        
     height: 30px;
     border-width: 0px;
     background-color: white;
 }
 
-.mo .btnMo{
-    width: 30px;
+.mo .btnMo{         
+    width: 30px;  
     border-width: 3px;
     margin-bottom: 0px;
 }
@@ -135,27 +146,27 @@
     border-width: 8px;
 }
 
-.directionBtns .btnForward{
+.directionBtns .btnForward{    
     top: 20%;
     left: 80%;
     transform: translate(-50%, -50%);
 }
 
 .directionBtns .btnLeft{
-
+    
     top: 50%;
     left: 70%;
     transform: translate(-50%, -50%);
 }
 
-.directionBtns .btnRight{
+.directionBtns .btnRight{    
     top: 50%;
     left: 90%;
     transform: translate(-50%, -50%);
 }
 
 .directionBtns .btnBackward{
-
+    
     top: 80%;
     left: 80%;
     transform: translate(-50%, -50%);
@@ -169,3 +180,22 @@
     height : 50px;
     width: 300px;
     font-size : 35px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
