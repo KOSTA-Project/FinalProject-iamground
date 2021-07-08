@@ -23,7 +23,7 @@
     <script src="./source/iamground.js"></script>
     </head>
     <body>
-        <h3>맵 정보 페이지<h3>
+	<h3>맵 정보 페이지<h3>
         <div class='container list'>
             <?
                 if(isset($_SESSION['userId'])){ print $_SESSION['userId']." 님 반갑습니다.";}
@@ -47,3 +47,4 @@
         </div>
     </body>
 </html>
+
