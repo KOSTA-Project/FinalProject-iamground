@@ -8,29 +8,29 @@
 </head>
 <body>
     <div class="container">
-        <h3>Add Mo</h3>
+        <h3>오브젝트 추가</h3>
         <form method="POST" action="../am/index.php?action=addMo">
             <input type="hidden" name="userId" value="<? echo $_POST['userId']?>"/>
             <input type="hidden" name="mapId" value="<? echo $_POST['mapId']?>"/>
             <table class="iamgroundTable">
                 <tr>
-                    <td class="alineRight">mo ID:</td>
+                    <td class="alineRight">아이디:</td>
                     <td><input type="text" name="moId" autocomplete="off"/></td>
                 </tr>
                 <tr>
-                    <td class="alineRight">mo Type:</td>
+                    <td class="alineRight">타입:</td>
                     <td><input type="text" name="moType" autocomplete="off"/></td>
                 </tr>
                 <tr>
-                    <td class="alineRight">mo Status:</td>
+                    <td class="alineRight">상태:</td>
                     <td><input type="text" name="moStatus" autocomplete="off"/></td>
                 </tr>
                 <tr>
-                    <td class="alineRight">mo IP:</td>
+                    <td class="alineRight">아이피:</td>
                     <td><input type="text" name="moIp" autocomplete="off"/></td>
                 </tr>
                 <tr>
-                    <td colspan="2" class="alineCenter"><input class="btnManage width200px" type="submit" value="추가"/></td>
+                    <td colspan="2" class="alineCenter"><input class="btnManage width200px" type="submit" value="추가"/></td> 
                 </tr>
             </table>
         </form>
