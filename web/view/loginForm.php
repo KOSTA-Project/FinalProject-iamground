@@ -13,6 +13,7 @@
   </head>
   <body>
   <div class='container'>
+    <h1 class='logo'><span class='logoI'>I</span><span class='logoAM'>AM</span><span class='logoGround'>Ground</span></h1>
     <form method="post" action="./index.php?action=login">
       <table class="iamgroundTable">
         <tr>
