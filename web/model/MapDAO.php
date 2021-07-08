@@ -18,7 +18,7 @@
             return self::$instance;
         }
 
-        //유져아이디로 맵정보를 가져온다.
+	//유져아이디로 맵정보를 가져온다.
         public function mSelectMapByUserId($userId){
             $mapDTOs = array();
             $sql = "SELECT * FROM map WHERE user_id=?";
@@ -35,7 +35,7 @@
             return $userDTOs;
         }
 
-        //맵 정보를 추가한다.
+	//맵 정보를 추가한다.
         public function insertMap($mapDTO){
             $sql = "INSERT INTO map VALUES (?, ?, ?)";
             $stm = $this->connection->prepare($sql);
@@ -43,7 +43,7 @@
             $stm->execute();
         }
 
-        //맵 정보를 수정한다.
+	//맵 정보를 수정한다.
         public function mUpdateMap($mapDTO){
             $sql = "UPDATE map SET map_location=? WHERE map_id=?";
             $stm = $this->connection->prepare ($sql);
@@ -51,7 +51,7 @@
             $stm->execute();
         }
 
-        //맵 정보를 삭제한다.
+	//맵 정보를 삭제한다.
         public function mDeleteMap($mapId){
             $sql = "delete from map where map_id=?;";
             $stm = $this->connection->prepare ($sql);
@@ -59,7 +59,7 @@
             $stm->execute();
         }
 
-        //오브젝트 아이디로 맵과 오브젝트 정보를 가져온다.
+	//오브젝트 아이디로 맵과 오브젝트 정보를 가져온다.
         public function mMonitoringByMoId($moId){
             $dtoArr = array();
             $sql = "SELECT m.map_id, m.user_id, m.map_location, mo.mo_id, mo.mo_type FROM map AS m JOIN mobile_object AS mo ON m.map_Id = mo.map_Id WHERE mo.mo_id = ? ";
@@ -74,7 +74,7 @@
                 array_push($dtoArr, $mapDTO);
                 array_push($dtoArr, $moDTO);
             }
-            return $dtoArr;
+	    return $dtoArr;
         }
         /*
         public function mInsertMapImage($mapImage){
