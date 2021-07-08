@@ -14,19 +14,19 @@
             <h3>사용자 관리</h3>
             <table class="iamgroundTable alineRight">
                 <tr>
-                            <td>
+		            <td>
                         <form method="POST" action="../am/index.php?action=userInfo">
-                            <input type="text" name="userId" autocomplete="off"/>
+                            <input type="text" name="userId" autocomplete="off"/> 
                             <input type="submit" class="btnManage" value ="검색"/>
                         </form>
                     </td>
                 </tr>
             </table>
             <table class="iamgroundTable">
-                <h4>모든 사용자 아이디</h4>
-                <?php $num=0; ?>
+		<h4>모든 사용자 아이디</h4>
+		<?php $num=0; ?>
                 <? for($i = 0; $i < count($userDTO); $i++) :?>
-                   <? if($userDTO[$i]->getUserType()==2) {continue;}?>
+	           <? if($userDTO[$i]->getUserType()==2) {continue;}?>
                     <tr>
                         <form method="POST" action="../am/index.php?action=userInfo">
                             <input type="hidden" name="userId" value="<?php echo $userDTO[$i]->getUserId();?>"/>
