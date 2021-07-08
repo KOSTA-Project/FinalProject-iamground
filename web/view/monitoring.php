@@ -15,6 +15,12 @@
     <script type="text/javascript" src="http://static.robotwebtools.org/ros2djs/current/ros2d.min.js"></script>
     <script type="text/javascript" src="http://static.robotwebtools.org/nav2djs/current/nav2d.min.js"></script>
     
+    <script type="text/javascript" src="http://static.robotwebtools.org/EaselJS/current/easeljs.min.js"></script>
+    <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+    <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+    <script type="text/javascript" src="http://static.robotwebtools.org/ros2djs/current/ros2d.min.js"></script>
+    <script type="text/javascript" src="http://static.robotwebtools.org/nav2djs/current/nav2d.min.js"></script>
+    
     <script type="text/javascript">
     /**
      * Setup all GUI elements when the page is loaded
@@ -48,8 +54,8 @@
     }
     </script>
 </head>
-<body>
-    <div class="listForm">
+<body onload="init()">
+ <div class="listForm">
         <table>
             <tr>
                 <td><? echo $dtoArr[0]->getMapId();?></td>
@@ -60,7 +66,7 @@
 		        <td><? echo $dtoArr[1]->getMoStatus();?></td>
             <tr>
         </table>
-        <div id="navi1">
+        <div id="navi">
             <div id="blackbox">
                 <img src="http://192.168.0.21:8090/?action=stream">
                 <div class="directionBtns">
@@ -71,8 +77,8 @@
                 </div>
                 <p id="log"> test </p>
             </div>
-        </div>
-        <div id="nav"></div>
+        </div>        
     </div>
+    <div id="nav"></div>
 </body>
 </html>
