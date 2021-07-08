@@ -11,8 +11,8 @@
             $this->userId = $userId;
             $this->mapId = $mapId;
             $this->moType = $moType;
-            $this->moStatus = $moStatus;
-            $this->moIp = $moIp;
+	    $this->moStatus = $moStatus;
+	    $this->moIp = $moIp;
         }
 
         public function setMoId($moId){
@@ -52,12 +52,12 @@
         public function getMoStatus(){
             return $this->moStatus;
         }
-        public function setMoIp(){
-            return $this->moIp;
-        }
-        public function getMoIp(){
-            return $this->moIp;
-        }
+	public function setMoIp(){
+	    return $this->moIp;
+	}
+	public function getMoIp(){
+	    return $this->moIp;
+	}
 
     }
 ?>
